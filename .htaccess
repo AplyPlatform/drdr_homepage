@@ -1,0 +1,52 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.dkdk\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.dkdk.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTPS_HOST} ^www\.dkdk\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.dkdk.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^dkdk\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.dkdk.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTPS_HOST} ^dkdk\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.dkdk.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.droneplay\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.droneplay.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTPS_HOST} ^www\.droneplay\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.droneplay.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^droneplay\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.droneplay.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{HTTPS_HOST} ^droneplay\.io$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ https://top.droneplay.io/ [R=301,L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{SERVER_NAME}/$1 [NC]
+
+#php_value error_reporting 22527
+#php_flag display_errors on
+

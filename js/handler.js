@@ -115,8 +115,7 @@ function setDRDRPage() {
 					}
 
 					if (i == rndv) {
-						$("#drdr-title").html(pr.post_title);
-						$("#main-page-title").text("두런두런 DRDR - 당신의 논, 밭을 브랜딩해드립니다 : " + pr.post_title);
+						//$("#drdr-title").html(pr.post_title);
 						$('#title_bgimage_url').css('background-image', 'url(' + pr.title_bgimage_url + ')');
 					}
 

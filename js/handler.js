@@ -220,7 +220,7 @@ function setFarmMainPageInfo(farm_id) {
   ajaxRequest(url, function (r) {
     if(r.result == "success") {
 				$("#farm-title").html(r.farm_name);
-				$("#farm_owner_name").html(r.farm_owner_names);
+				$("#farm_owner_name").html(r.farm_owner_name);
 				$("#main-page-title").text("두런두런 DRDR - 당신의 논, 밭을 브랜딩해드립니다 : " + r.farm_name);
 				$("#farm_crops").html(r.farm_crops);
 				$("#farm_size").html(r.farm_size);

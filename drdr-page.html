@@ -61,77 +61,68 @@
         	<div class="container-fluid">
         		<!-- Brand-->
         		<div class="inner-header"><a class="inner-brand" href="./start-page"><img src="https://aplyplatform.cdn3.cafe24.com/logo-drdr.png" alt="두런두런" width="100" /></a></div>
-          		<!-- Navigation-->
-          		<div class="inner-navigation collapse">
-    			         <div class="inner-nav">
-  				          <ul>
-              					<li><a href="./start-page"><span class="menu-item-span">홈</span></a></li>
-              					<li><a href="./farm-list-page"><span class="menu-item-span">논밭 블로그</span></a></li>
-              					<li><a href="./drdr-page"><span class="menu-item-span">두런두런 이야기</span></a></li>
-              					<li><a href="./about"><span class="menu-item-span">두런두런 소개</span></a></li>
-                        <li><a href="./application"><span class="menu-item-span btn btn-dark btn-sm">브랜딩 신청하기</span></a></li>
-                     </ul>
-                   </div>
-              </div>
-              <div class="extra-nav">
-                      <ul>
-                      	<li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
-                      </ul>
-              </div>
+            <!-- Navigation-->
+            <div class="inner-navigation collapse">
+                 <div class="inner-nav">
+                  <ul>
+                      <li><a href="./start-page"><span class="menu-item-span">홈</span></a></li>
+                      <li><a href="./farm-list-page"><span class="menu-item-span">논밭 블로그</span></a></li>
+                      <li><a href="./drdr-page"><span class="menu-item-span">두런두런 이야기</span></a></li>
+                      <li><a href="./about"><span class="menu-item-span">두런두런 소개</span></a></li>
+                      <li><a href="./application"><span class="menu-item-span btn btn-dark btn-sm">브랜딩 신청하기</span></a></li>
+                   </ul>
+                 </div>
+            </div>
+                <div class="extra-nav">
+                    <ul>
+                    	<li class="nav-toggle"><a href="#" data-toggle="collapse" data-target=".inner-navigation"><span class="menu-item-span"><i class="ti-menu"></i></span></a></li>
+                    </ul>
+                </div>
             </div>
         </header>
         <!-- Header end-->
 
-
         <!-- Wrapper-->
         <div class="wrapper">
-            <!-- Video -->
-            <section id="title_bgimage_url" class="module-cover parallax fullscreen text-center" data-overlay="0.45">
+            <!-- Hero: Farm에 따라 bg image, 텍스트 등 바뀜 -->
+            <section class="module-cover parallax text-center" id="title_bgimage_url" data-overlay="0.3">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>매일 매일 자라고 변화하는<br />정직한 논, 밭을 보여드립니다.</strong></h1>
-                            <p class="m-b-40">1년 <span id="day_count">0</span>일, 하루 <span id="hour_count">0</span>시간</p>
-                            <p><a class="btn btn-lg btn-circle btn-brand" href="./farm-list-page">두런두런 FARM 보러가기</a></p>
+                            <h2 id="drdr-title"></h2>
+                            <ol class="breadcrumb justify-content-center">
+                              <li class="breadcrumb-item"><a href="./start-page">Home</a></li>
+                            </ol>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- Video end-->
+            <!-- Hero end-->
 
-            <!-- Blog-->
+       		<!-- 최근 Blog post listing-->
             <section class="module">
                 <div class="container">
-                	<div class="row">
-                        <div class="col-md-6 m-auto text-center">
-                            <h1>Today's Pick</h1>
-                            <p class="lead">두런두런 Farm의 최근 모습을 경험해보세요.</p>
-                        </div>
-                    </div>
-                	<div class="row">
-                        <div class="col-lg-12">
-              							<div id="articles_el">
-              								<div class="row row-post-masonry" id="post_contents">
+                    <div class="row">
+                        <div class="col-lg-8 m-auto">
+                            <!-- Post-->
+                            <article class="post" id="drdr_contents">
 
-              											<!-- Post-->
-
-              											<!-- Post end-->
-
-              								</div>
-              							</div>
-
+                            </article>
                             <div id="loaderbox" class="normalbox">
-                              <img src="/assets/image/ajax-loader.gif" width=32 height=32>
-                            </div>
+                          		<img src="./assets/image/ajax-loader.gif" width=32 height=32>
+                          	</div>
 
-                            <div id="loadermore" class="normalbox">
-                              <a href="javascript:loadNextLatestData();" class="btn_more">목록 더 불러오기</a>
-                            </div>
+                          	<div id="loadermore" class="normalbox">
+                          		<a href="javascript:loadNextDRDRPageData();" class="btn_more">목록 더 불러오기</a>
+                          	</div>
+                            <!-- Post end-->
+
+
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- Blog end-->
+            <!-- 최근 Blog post listing end-->
 
             <!-- Footer-->
             <footer class="footer">
@@ -160,8 +151,8 @@
         <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
         <script src="./assets/js/custom/plugins.min.js"></script>
         <script src="./assets/js/custom/custom.min.js"></script>
-        <script src="./assets/js/custom/jquery.animateNumber.min.js"></script>
+
         <script type="text/javascript" src="./js/req.js"></script>
-    	<script type="text/javascript" id="page_data" page_action="start-page" src="./js/handler.js"></script>
+    		<script type="text/javascript" id="page_data" page_action="drdr_page" src="./js/handler.js"></script>
     </body>
 </html>

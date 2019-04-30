@@ -15,8 +15,6 @@ function addStartPageContent(r) {
 }
 
 function addFarmMainPageContent(pr) {
-
-
 	var content = '<article class="post">'
 		+ '<div class="post-preview"><a href="./farm-post-page?id=' + pr.page_id + '">'
 		+ '<img src="' + pr.video_image_1 + '" alt=""></a></div>'
@@ -27,6 +25,20 @@ function addFarmMainPageContent(pr) {
 		+ '</article>';
 
 	$('#farm_contents').append(content);
+}
+
+
+function addDRDRPageContent(pr) {
+	var content = '<article class="post">'
+		+ '<div class="post-preview"><a href="./drdr-post-page?id=' + pr.page_id + '">'
+		+ '<img src="' + pr.video_image_1 + '" alt=""></a></div>'
+		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
+		+ '<a href="./drdr-post-page?id=' + pr.page_id + '">' + pr.post_title + '</a></h2><ul class="post-meta"><li>'
+		+ makeDateStr(pr.post_date) + '</li></ul></div><div class="post-content"><p>'
+		+ pr.post_content + '</p></div><div class="post-more"><a href="./drdr-post-page?id=' + pr.page_id + '">더보기</a></div></div>'
+		+ '</article>';
+
+	$('#drdr_contents').append(content);
 }
 
 function addFarmListPageContent(pr) {
@@ -45,6 +57,35 @@ function setFarmListPageToday(pr) {
 	$('#farm_page_url').attr("href", "./farm-main-page?id=" + pr.page_id);
 }
 
+
+function setDRDRPage() {
+	if (curPageIsEnd == true) return;
+
+	var url = "https://drdr.io/handler/handler.php?action=drdr_page&cur=" + curPageOffset;
+
+  ajaxRequest(url, function (r) {
+    if(r.result == "success") {
+				r.data.forEach(function (pr) {
+					if (pr.page_id == "end") {
+						curPageIsEnd = true;
+						return;
+					}
+
+					addDRDRPageContent(pr)
+				});
+
+				curPageOffset += r.data.length;
+
+				if (curPageIsEnd == true) {
+					$("#loadermore").hide();
+				}
+
+				hideLoader();
+    }
+  }, function() {
+			hideLoader();
+  });
+}
 
 function setFarmMainPage(farm_id) {
 	if (curPageIsEnd == true) return;
@@ -75,6 +116,94 @@ function setFarmMainPage(farm_id) {
   });
 }
 
+
+function setDRDRPage() {
+	var url = "https://drdr.io/handler/handler.php?action=drdr_page&cur=" + curPageOffset;
+
+  ajaxRequest(url, function (r) {
+    if(r.result == "success") {
+				var rndv = Math.floor(Math.random() * (r.data.length - 1));
+				var i = 0;
+				r.data.forEach(function (pr) {
+					if (pr.page_id == "end") {
+						curPageIsEnd = true;
+						return;
+					}
+
+					addDRDRPageContent(pr);
+					if (curTitleIsSet == false && i == rndv) {
+						setDRDRPageToday(pr);
+						curTitleIsSet = true;
+					}
+					i++;
+				});
+
+				curPageOffset += r.data.length;
+
+				if (curPageIsEnd == true) {
+					$("#loadermore").hide();
+				}
+
+				hideLoader();
+    }
+  }, function() {
+			hideLoader();
+  });
+}
+
+
+function setDRDRPostPage(page_id) {
+	var url = "https://drdr.io/handler/handler.php?action=drdr_post&page_id=" + page_id;
+
+	ajaxRequest(url, function (r) {
+		if(r.result == "success") {
+				$("#post_title").html(r.post_title);
+
+				$("#post_date").html(makeDateStr(r.post_date));
+				$("#post_content").html(r.post_content);
+				$('#title_bgimage_url').css('background-image', 'url(' + r.title_bgimage_url + ')');
+				if (r.video_url_1 == null || r.video_url_1 == "") {
+					$('#video_url_1').hide();
+				}
+				else {
+					$('#video_url_1').attr("href", r.video_url_1);
+				}
+
+				$('#video_image_1').attr("src", r.video_image_1);
+				$('#post-post_footer').html(r.post_tags);
+
+				if (r.hasOwnProperty("p_1")) {
+					$('#drdr-prev-link').show();
+					$('#drdr-next-link').show();
+					if (r.p_0 < r.page_id) {
+						$('#drdr-prev-link').attr("href", "./drdr-post-page?id=" + r.p_0);
+						$('#drdr-next-link').attr("href", "./drdr-post-page?id=" + r.p_1);
+					}
+					else {
+						$('#drdr-prev-link').attr("href", "./drdr-post-page?id=" + r.p_1);
+						$('#drdr-next-link').attr("href", "./drdr-post-page?id=" + r.p_0);
+					}
+
+				}
+				else if(r.hasOwnProperty("p_0")) {
+					if (r.p_0 < r.page_id) {
+						$('#drdr-prev-link').show();
+						$('#drdr-prev-link').attr("href", "./drdr-post-page?id=" + r.p_0 );
+					}
+					else {
+						$('#drdr-next-link').show();
+						$('#drdr-next-link').attr("href", "./drdr-post-page?id=" + r.p_0 );
+					}
+				}
+				else {
+					$('#drdr-prev-link').hide();
+					$('#drdr-next-link').hide();
+				}
+		}
+	}, function() {
+
+	});
+}
 
 function setFarmListPage() {
 	var url = "https://drdr.io/handler/handler.php?action=farm_list&cur=" + curPageOffset;
@@ -403,6 +532,13 @@ function getData() {
 	}
 	else if (page_action == "application") {
 		setApplicatonPage();
+	}
+	else if (page_action == "drdr_page") {
+		setDRDRPage();
+		setScrollEvent(loadNextDRDRPageData);
+	}
+	else if (page_action == "drdr-post-page") {
+		setDRDRPostPage(page_id);
 	}
 }
 

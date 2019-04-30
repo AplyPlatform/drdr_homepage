@@ -58,35 +58,6 @@ function setFarmListPageToday(pr) {
 }
 
 
-function setDRDRPage() {
-	if (curPageIsEnd == true) return;
-
-	var url = "https://drdr.io/handler/handler.php?action=drdr_page&cur=" + curPageOffset;
-
-  ajaxRequest(url, function (r) {
-    if(r.result == "success") {
-				r.data.forEach(function (pr) {
-					if (pr.page_id == "end") {
-						curPageIsEnd = true;
-						return;
-					}
-
-					addDRDRPageContent(pr)
-				});
-
-				curPageOffset += r.data.length;
-
-				if (curPageIsEnd == true) {
-					$("#loadermore").hide();
-				}
-
-				hideLoader();
-    }
-  }, function() {
-			hideLoader();
-  });
-}
-
 function setFarmMainPage(farm_id) {
 	if (curPageIsEnd == true) return;
 
@@ -116,26 +87,29 @@ function setFarmMainPage(farm_id) {
   });
 }
 
-
 function setDRDRPage() {
+	if (curPageIsEnd == true) return;
+
 	var url = "https://drdr.io/handler/handler.php?action=drdr_page&cur=" + curPageOffset;
+	var bFirst = true;
 
   ajaxRequest(url, function (r) {
     if(r.result == "success") {
-				var rndv = Math.floor(Math.random() * (r.data.length - 1));
-				var i = 0;
+
+
 				r.data.forEach(function (pr) {
 					if (pr.page_id == "end") {
 						curPageIsEnd = true;
 						return;
 					}
 
-					addDRDRPageContent(pr);
-					if (curTitleIsSet == false && i == rndv) {
-						setDRDRPageToday(pr);
-						curTitleIsSet = true;
+					if (bFirst == true) {
+						$("#drdr-title").html(pr.post_title);
+						$("#main-page-title").text("두런두런 DRDR - 당신의 논, 밭을 브랜딩해드립니다 : " + pr.post_title);
+						bFirst = false;
+						return;
 					}
-					i++;
+					addDRDRPageContent(pr)
 				});
 
 				curPageOffset += r.data.length;
@@ -367,6 +341,12 @@ function loadNextFarmMainPageData() {
 function loadNextFarmListData() {
 	showLoader();
 	setFarmListPage();
+	hideLoader();
+}
+
+function loadNextDRDRPageData() {
+	showLoader();
+	setDRDRPage();
 	hideLoader();
 }
 

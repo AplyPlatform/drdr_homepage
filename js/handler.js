@@ -4,7 +4,17 @@ var curPageIsEnd = false;
 var curTitleIsSet = false;
 
 function addStartPageContent(r) {
-	var content = '<div class="col-md-4 post-item"><div class="post-item"><article class="post"><div class="post-preview">'
+	var content = '<div class="col-md-4 post-item"><div class="post-item"><article class="post"><div class="post-preview">';
+	if(r.is_drdr == 1) {
+		content = content
+		+ '<a href="./drdr-post-page?id=' + r.post_id +'"><img src="' + r.start_page_image_url_1 + '" border=0></a></div>'
+		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
+		+ '<a id="/drdr-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'
+		+ '<p>' + r.post_content + '</p>'
+		+ '<p><a href="./drdr-post-page?id=' + r.post_id + '">더보기</a></p></div></div></article></div></div>';
+	}
+	else{
+		content = content
 		+ '<a href="./farm-post-page?id=' + r.post_id +'"><img src="' + r.start_page_image_url_1 + '" border=0></a></div>'
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
 		+ '<a id="/farm-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'

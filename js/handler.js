@@ -42,7 +42,7 @@ function addFarmMainPageContent(pr) {
 function addDRDRPageContent(pr) {
 	var content = '<article class="post">'
 		+ '<div class="post-preview"><a href="./drdr-post-page?id=' + pr.page_id + '">'
-		+ '<img src="' + pr.title_bgimage_url + '" alt=""></a></div>'
+		+ '<img src="' + pr.video_image_1 + '" alt=""></a></div>'
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
 		+ '<a href="./drdr-post-page?id=' + pr.page_id + '">' + pr.post_title + '</a></h2><ul class="post-meta"><li>'
 		+ makeDateStr(pr.post_date) + '</li></ul></div><div class="post-content"><p>'

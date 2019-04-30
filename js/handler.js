@@ -147,7 +147,7 @@ function setDRDRPostPage(page_id) {
 
 				$("#post_date").html(makeDateStr(r.post_date));
 				$("#post_content").html(r.post_content);
-				$('#title_bgimage_url').css('background-image', 'url(' + r.start_title_bgimage_url + ')');
+				$('#title_bgimage_url').css('background-image', 'url(' + r.title_bgimage_url + ')');
 				if (r.video_url_1 == null || r.video_url_1 == "") {
 					$('#video_url_1').hide();
 				}

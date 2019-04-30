@@ -9,7 +9,7 @@ function addStartPageContent(r) {
 		content = content
 		+ '<a href="./drdr-post-page?id=' + r.post_id +'"><img src="' + r.start_page_image_url_1 + '" border=0></a></div>'
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
-		+ '<a id="/drdr-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'
+		+ '<a id="./drdr-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'
 		+ '<p>' + r.post_content + '</p>'
 		+ '<p><a href="./drdr-post-page?id=' + r.post_id + '">더보기</a></p></div></div></article></div></div>';
 	}
@@ -17,7 +17,7 @@ function addStartPageContent(r) {
 		content = content
 		+ '<a href="./farm-post-page?id=' + r.post_id +'"><img src="' + r.start_page_image_url_1 + '" border=0></a></div>'
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
-		+ '<a id="/farm-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'
+		+ '<a id="./farm-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'
 		+ '<p>' + r.post_content + '</p>'
 		+ '<p><a href="./farm-post-page?id=' + r.post_id + '">더보기</a></p></div></div></article></div></div>';
 
@@ -31,7 +31,7 @@ function addFarmMainPageContent(pr) {
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
 		+ '<a href="./farm-post-page?id=' + pr.page_id + '">' + pr.post_title + '</a></h2><ul class="post-meta"><li>'
 		+ makeDateStr(pr.post_date) + '</li></ul></div><div class="post-content"><p>'
-		+ pr.post_content + '</p></div><div class="post-more"><a href="./farm-post-page?id=' + pr.page_id + '">더보기</a></div></div>'
+		+ pr.post_content + '</p></div><div class="post-more"><a href="/farm-post-page?id=' + pr.page_id + '">더보기</a></div></div>'
 		+ '</article>';
 
 	$('#farm_contents').append(content);
@@ -41,7 +41,7 @@ function addFarmMainPageContent(pr) {
 function addDRDRPageContent(pr) {
 	var content = '<article class="post">'
 		+ '<div class="post-preview"><a href="./drdr-post-page?id=' + pr.page_id + '">'
-		+ '<img src="' + pr.video_image_1 + '" alt=""></a></div>'
+		+ '<img src="' + pr.start_page_image_url_1 + '" alt=""></a></div>'
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
 		+ '<a href="./drdr-post-page?id=' + pr.page_id + '">' + pr.post_title + '</a></h2><ul class="post-meta"><li>'
 		+ makeDateStr(pr.post_date) + '</li></ul></div><div class="post-content"><p>'
@@ -105,21 +105,22 @@ function setDRDRPage() {
 
   ajaxRequest(url, function (r) {
     if(r.result == "success") {
-
-
+				var rndv = Math.floor(Math.random() * (r.data.length - 1));
+				var i = 0;
 				r.data.forEach(function (pr) {
 					if (pr.page_id == "end") {
 						curPageIsEnd = true;
 						return;
 					}
 
-					if (bFirst == true) {
+					if (i == rndv) {
 						$("#drdr-title").html(pr.post_title);
 						$("#main-page-title").text("두런두런 DRDR - 당신의 논, 밭을 브랜딩해드립니다 : " + pr.post_title);
-						bFirst = false;
-						return;
+						$('#title_bgimage_url').css('background-image', 'url(' + r.start_page_image_url_1 + ')');
 					}
-					addDRDRPageContent(pr)
+
+					addDRDRPageContent(pr);
+					i++;
 				});
 
 				curPageOffset += r.data.length;
@@ -145,7 +146,7 @@ function setDRDRPostPage(page_id) {
 
 				$("#post_date").html(makeDateStr(r.post_date));
 				$("#post_content").html(r.post_content);
-				$('#title_bgimage_url').css('background-image', 'url(' + r.title_bgimage_url + ')');
+				$('#title_bgimage_url').css('background-image', 'url(' + r.start_title_bgimage_url + ')');
 				if (r.video_url_1 == null || r.video_url_1 == "") {
 					$('#video_url_1').hide();
 				}

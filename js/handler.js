@@ -195,8 +195,9 @@ function setFarmListPage() {
 
   ajaxRequest(url, function (r) {
     if(r.result == "success") {
+				var curTitleIsSet = false;
 				var rndv = Math.floor(Math.random() * (r.data.length - 1));
-				var i = 0;
+				//var i = 0;
 				r.data.forEach(function (pr) {
 					if (pr.page_id == "end") {
 						curPageIsEnd = true;
@@ -204,11 +205,11 @@ function setFarmListPage() {
 					}
 
 					addFarmListPageContent(pr);
-					if (curTitleIsSet == false && i == rndv) {
+					if (curTitleIsSet == false && pr.document_srl == 176/* && i == rndv */) {
 						setFarmListPageToday(pr);
 						curTitleIsSet = true;
 					}
-					i++;
+					//i++;
 				});
 
 				curPageOffset += r.data.length;

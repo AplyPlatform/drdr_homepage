@@ -231,7 +231,7 @@ function setFarmMainPageInfo(farm_id) {
 
   ajaxRequest(url, function (r) {
     if(r.result == "success") {
-				$("#farm-title").html(r.farm_name);
+				$("#farm-title").html(r.farm_name + " 이야기");
 				$("#farm_owner_name").html(r.farm_owner_name);
 				$("#main-page-title").text("두런두런 DRDR - 당신의 논, 밭을 브랜딩해드립니다 : " + r.farm_name);
 				$("#farm_crops").html(r.farm_crops);
@@ -266,6 +266,8 @@ function setFarmPostPage(page_id) {
 				$('#post-farm_url').attr("href", "./farm-main-page?id=" + r.farm_id);
 				$('#post-post_footer').html(r.post_tags);
 				$('#post-farm_name').html(r.farm_name);
+
+				$('#farm-list-link').attr("href", "./farm-main-page?id=" + r.farm_id);
 
 				if (r.hasOwnProperty("p_1")) {
 					$('#farm-prev-link').show();

@@ -107,8 +107,6 @@ pre {
     -ms-overflow-style: scrollbar;
 }
 
-.post-content pre {word-wrap: break-word; font-family: font-family: 'Roboto', 'Noto Sans KR', Arial, sans-serif;}
-
 figure {margin: 0 0 1rem;}
 img {vertical-align: middle; border-style: none;}
 svg:not(:root) {overflow: hidden;}
@@ -13169,6 +13167,8 @@ img.img-shadow,
 .post-content ol {
     list-style-type: decimal;
 }
+
+.post-content pre {white-space: normal; font-family: font-family: 'Roboto', 'Noto Sans KR', Arial, sans-serif !important;}
 
 @media (max-width: 991.98px) {
     .sidebar {

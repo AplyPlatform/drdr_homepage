@@ -107,6 +107,8 @@ pre {
     -ms-overflow-style: scrollbar;
 }
 
+.post-content pre {word-wrap: break-word; font-family: font-family: 'Roboto', 'Noto Sans KR', Arial, sans-serif;}
+
 figure {margin: 0 0 1rem;}
 img {vertical-align: middle; border-style: none;}
 svg:not(:root) {overflow: hidden;}

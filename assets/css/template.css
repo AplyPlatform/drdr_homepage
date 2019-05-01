@@ -13168,7 +13168,7 @@ img.img-shadow,
     list-style-type: decimal;
 }
 
-.post-content pre {white-space: normal; font-family: 'Poor Story', cursive, sans-serif !important;}
+.post-content .pre {background-color: #f8f8f8; border-radius: .1875rem; font-size: 100%; padding: 20px; display: block; color: #212529; margin-top: 0; margin-bottom: 1rem; overflow: auto; white-space: normal; text-align:center; font-family: 'Poor Story', cursive, sans-serif !important;}
 
 @media (max-width: 991.98px) {
     .sidebar {

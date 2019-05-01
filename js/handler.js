@@ -63,7 +63,7 @@ function addFarmListPageContent(pr) {
 }
 
 function setFarmListPageToday(pr) {
-	$("#farm_name").html(pr.farm_name);
+	$("#farm_name").html(pr.farm_name + " 이야기");
 	$('#today_title_bgimage_url').attr("data-background", pr.title_bgimage_url);
 	$('#farm_page_url').attr("href", "./farm-main-page?id=" + pr.page_id);
 }

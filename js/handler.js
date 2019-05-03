@@ -233,7 +233,7 @@ function setFarmMainPageInfo(farm_id) {
     if(r.result == "success") {
 				$("#farm-title").html(r.farm_name + " 이야기");
 				$("#farm_owner_name").html(r.farm_owner_name);
-				$("#main-page-title").text("두런두런 DRDR - 당신의 논, 밭을 브랜딩해드립니다 : " + r.farm_name);
+				$("#main-page-title").text("당신의 논, 밭을 브랜딩해드립니다 : " + r.farm_name);
 				$("#farm_crops").html(r.farm_crops);
 				$("#farm_size").html(r.farm_size);
 				$('#title_bgimage_url').attr("data-background", r.title_bgimage_url);

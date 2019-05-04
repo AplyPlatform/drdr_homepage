@@ -143,7 +143,7 @@ function setDRDRPostPage(page_id) {
 	ajaxRequest(url, function (r) {
 		if(r.result == "success") {
 				$("#post_title").html(r.post_title);
-
+				$('meta[property="og:description"]').attr('content',r.post_title);
 				$("#post_date").html(makeDateStr(r.post_date));
 				$("#post_content").html(r.post_content);
 				$('#title_bgimage_url').css('background-image', 'url(' + r.title_bgimage_url + ')');
@@ -250,7 +250,7 @@ function setFarmPostPage(page_id) {
 	ajaxRequest(url, function (r) {
 		if(r.result == "success") {
 				$("#post_title").html(r.post_title);
-
+				$('meta[property="og:description"]').attr('content',r.post_title);
 				$("#post_date").html(makeDateStr(r.post_date));
 				$("#post_content").html(r.post_content);
 				$('#title_bgimage_url').css('background-image', 'url(' + r.title_bgimage_url + ')');

@@ -2,16 +2,10 @@
 var curPageOffset = 0;
 var curPageIsEnd = false;
 var curTitleIsSet = false;
-var curContentCount = 0;
 
 function addStartPageContent(r) {
-	var content = "";
 
-	if (curContentCount % 3 == 0) {
-		content = '';
-	}
-
-	content = content + '<div class="col-md-4 post-item"><div class="post-item"><article class="post"><div class="post-preview">';
+	var content = '<div class="col-md-4 post-item"><article class="post"><div class="post-preview">';
 	if(r.is_drdr == 1) {
 		content = content
 		+ '<a href="./drdr-post-page?id=' + r.post_id +'"><img src="' + r.start_page_image_url_1 + '" border=0></a></div>'
@@ -26,14 +20,8 @@ function addStartPageContent(r) {
 		+ '<div class="post-wrapper"><div class="post-header"><h2 class="post-title">'
 		+ '<a id="./farm-post-page?id=' + r.post_id + '">'+ r.post_title +'</a></h2></div><div class="post-content">'
 		+ '<p>' + r.post_content + '</p>'
-		+ '<p><a href="./farm-post-page?id=' + r.post_id + '">더보기</a></p></div></div></article></div></div>';
+		+ '<p><a href="./farm-post-page?id=' + r.post_id + '">더보기</a></p></div></div></article></div>';
 	}
-
-	if (curContentCount >= 2 && (curContentCount % 3 == 2)) {
-		content = content + '';
-	}
-
-	curContentCount++;
 
 	$('#post_contents').append(content);
 }
@@ -318,7 +306,7 @@ function setFarmPostPage(page_id) {
 }
 
 function setStartPage() {
-	var url = "https://drdr.io/handler/handler.php?action=farm_start&cur=" + curPageOffset;
+	var url = "https://drdr.io/handler/handler.php?action=farm_start";
 
 	ajaxRequest(url, function (r) {
 		if(r.result == "success") {
@@ -329,35 +317,14 @@ function setStartPage() {
 				}
 
 				r.data.forEach(function (pr) {
-					if (pr.post_id == "end") {
-						curPageIsEnd = true;
-						return;
-					}
-
 					addStartPageContent(pr);
 				});
-
-				if (curContentCount % 3 == 1)
-					$('#post_contents').append("</div>");
-
-				curPageOffset += r.data.length;
-
-				if (curPageIsEnd == true) {
-					$("#loadermore").hide();
-				}
 
 				hideLoader();
 		}
 	}, function() {
 
 	});
-}
-
-
-function loadNextStartPageData() {
-	showLoader();
-	setStartPage();
-	hideLoader();
 }
 
 function loadNextFarmMainPageData() {
@@ -528,7 +495,6 @@ function getData() {
 			setCountText("#day_count", 365, 8000);
 			setCountText("#hour_count", 24, 8000);
 		}, 11000);
-		setScrollEvent(loadNextStartPageData);
 	}
 	else if (page_action == "farm-post-page") {
 		setFarmPostPage(page_id);

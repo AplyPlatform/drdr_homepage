@@ -8,7 +8,7 @@ function addStartPageContent(r) {
 	var content = "";
 
 	if (curContentCount % 3 == 0) {
-		content = '<div class="row">';
+		content = '';
 	}
 
 	content = content + '<div class="col-md-4 post-item"><div class="post-item"><article class="post"><div class="post-preview">';
@@ -30,7 +30,7 @@ function addStartPageContent(r) {
 	}
 
 	if (curContentCount >= 2 && (curContentCount % 3 == 2)) {
-		content = content + '</div>';
+		content = content + '';
 	}
 
 	curContentCount++;

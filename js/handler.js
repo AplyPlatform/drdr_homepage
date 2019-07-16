@@ -238,7 +238,15 @@ function setFarmMainPageInfo(farm_id) {
 				$("#main-page-title").text("당신의 논, 밭을 브랜딩해드립니다 : " + r.farm_name);
 				$("#farm_crops").html(r.farm_crops);
 				$("#farm_size").html(r.farm_size);
-				$("#farm_homepage").html(r.farm_homepage);
+
+				if ("farm_homepage" in r && r.farm_homepage != "") {
+					$('#farm_homepage_link').attr("href", r.farm_homepage);
+					$("#farm_homepage").html(r.farm_homepage);
+				}
+				else {
+					$('#farm_homepage_field').hide();
+				}
+
 				$('#title_bgimage_url').attr("data-background", r.title_bgimage_url);
 				$('#farm_location_url').attr("src", r.farm_location_url);
     }

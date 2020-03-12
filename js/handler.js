@@ -207,7 +207,7 @@ function setFarmListPage() {
 					}
 
 					addFarmListPageContent(pr);
-					if (curTitleIsSet == false && pr.document_srl == 176/* && i == rndv */) {
+					if (curTitleIsSet == false && pr.document_srl == 471/* && i == rndv */) {
 						setFarmListPageToday(pr);
 						curTitleIsSet = true;
 					}

@@ -320,8 +320,8 @@ function setStartPage() {
 	ajaxRequest(url, function (r) {
 		if(r.result == "success") {
 				if (curTitleIsSet == false) {
-					$('#title_bgimage_url').attr("data-background", r.start_title_bgimage_url);
-					$('#title_bgimage_url').attr("data-jarallax-video", r.start_video_url);
+					$('#section_bg').attr("data-background", r.start_title_bgimage_url);
+					$('#title_bgimage_url').attr("data-youtube", r.start_video_url);
 					curTitleIsSet = true;
 				}
 

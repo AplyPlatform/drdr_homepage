@@ -529,4 +529,8 @@ function getData() {
 	}
 }
 
-getData();
+$( document ).ready(function() {
+	getData();
+  jQuery('[data-youtube]').youtube_background();
+});
+

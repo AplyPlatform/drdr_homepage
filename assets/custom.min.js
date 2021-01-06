@@ -10,13 +10,13 @@
      * Preloader
     /* ---------------------------------------------- */
 
-    $(window).on('load', function() {
+    //$(window).on('load', function() {
 
         if($('div').is('.page-loader')) {
             $('.page-loader').delay(500).fadeOut(800);
         }
 
-    });
+    //});
 
     $(document).ready(function() {
 
